@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "9526504992",
+    "project_id": "amatutorialpaper",
+    "storage_bucket": "amatutorialpaper.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9526504992:android:b10e2fe03052caf8395645",
+        "android_client_info": {
+          "package_name": "com.example.appauthtutorialpaper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeMedvo9PfYcIA-fkFI98L3Mp1pDe4GAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
