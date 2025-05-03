@@ -31,12 +31,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    //request code ca identific fapul ca rezultatul de la onActivityResult provine
+    // din procesul sign-in
     private static final int RC_SIGN_IN = 1001;
+
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     private DatabaseReference userRef;
 
-    private Button signin, register, googleSignInBtn;
+    private Button signin;
+    private Button register;
+    private Button googleSignInBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,24 +76,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Configurare Google Sign-In
+        //gso are nevoie de id-ul din firebase console - SHA-1 fingerprint adaugat
+        //obtinut cu ./gradlew signingReport
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         googleSignInBtn.setOnClickListener(v -> signInWithGoogle());
     }
 
+    //Metoda intai face signout daca e un cont conectat si apoi cere din nou
+    //userului sa isi aleaga contul pt conectare
     private void signInWithGoogle() {
         mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
         });
     }
-
+    //metoda  primește rezultatul alegerii contului Google
+    //dacă este valid, trimite token-ul către Firebase pentru autentificare
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -103,14 +111,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     private void firebaseAuthWithGoogle(String idToken) {
+        //creaza un credential pe baza tokeinului primit
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
+                    if (task.isSuccessful()) { //daca autentificarea reuseste
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
+                        //obtinem referinta exacta din baza de date
                         userRef = FirebaseDatabase.getInstance("https://amatutorialpaper-default-rtdb.europe-west1.firebasedatabase.app")
                                 .getReference("Users").child(firebaseUser.getUid());
 
@@ -128,10 +137,11 @@ public class MainActivity extends AppCompatActivity {
                                             null,
                                             firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : null
                                     );
+                                    //daca nu exisra il salvam
                                     userRef.setValue(user);
                                 }
 
-                                // Redirect către profil
+                                // Redirectionam către profil
                                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                                 finish();
                             }
