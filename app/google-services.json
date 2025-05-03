@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "9526504992",
+    "firebase_url": "https://amatutorialpaper-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "amatutorialpaper",
     "storage_bucket": "amatutorialpaper.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.appauthtutorialpaper"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "9526504992-mii25mh0hi612b9242cbapv2i12jd6q8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appauthtutorialpaper",
+            "certificate_hash": "968daaf75760740c95c5aeefcc760b43a20e5039"
+          }
+        },
+        {
+          "client_id": "9526504992-aobfnk1hiqp87hudl1lpeu9vbhhjjr6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCeMedvo9PfYcIA-fkFI98L3Mp1pDe4GAg"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9526504992-aobfnk1hiqp87hudl1lpeu9vbhhjjr6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

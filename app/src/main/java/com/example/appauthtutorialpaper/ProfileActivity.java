@@ -3,10 +3,13 @@ package com.example.appauthtutorialpaper;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import androidx.activity.EdgeToEdge;
@@ -69,7 +72,15 @@ public class ProfileActivity extends AppCompatActivity {
                     emailText.setText(user.email);
                     phoneText.setText(user.phone);
                     passwordText.setText(user.password);
-
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (firebaseUser != null && firebaseUser.getProviderData().size() > 1) {
+                        for (UserInfo profile : firebaseUser.getProviderData()) {
+                            if ("google.com".equals(profile.getProviderId())) {
+                                passwordText.setVisibility(View.GONE);
+                                break;
+                            }
+                        }
+                    }
                     // ✅ Afișăm poza dacă există un URL
                     if (user.profileImageUrl != null) {
                         Picasso.get().load(user.profileImageUrl).into(profileImage);

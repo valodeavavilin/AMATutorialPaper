@@ -12,19 +12,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Bun venit!" />
 
     <Button
         android:id="@+id/SignInBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign-In" />
 
     <Button
         android:id="@+id/RegisterBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register" />
+
+    <Button
+        android:id="@+id/btnGoogleSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Autentificare cu Google"
+        android:layout_marginTop="24dp" />
+
 
 
 </LinearLayout>
