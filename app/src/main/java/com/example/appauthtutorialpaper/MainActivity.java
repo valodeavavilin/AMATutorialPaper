@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Inițializăm butoane
         signin = findViewById(R.id.SignInBtn);
+        signin.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, SigninActivity.class));
+            finish();
+        });
+
         register = findViewById(R.id.RegisterBtn);
         LinearLayout googleSignInBtn = findViewById(R.id.btnGoogleSignIn);
         // Click pe Sign-In standard
