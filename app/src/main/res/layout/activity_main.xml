@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bun venit!" />
+        android:text="Welcome!" />
 
     <Button
         android:id="@+id/SignInBtn"
@@ -26,12 +26,34 @@
         android:layout_height="wrap_content"
         android:text="Register" />
 
-    <Button
+    <LinearLayout
         android:id="@+id/btnGoogleSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Authentication with Google"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/bg_google_button"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_google_logo"
+            android:contentDescription="Google logo"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue with Google"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+    </LinearLayout>
+
 
 
 

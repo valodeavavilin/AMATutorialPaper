@@ -3,6 +3,7 @@ package com.example.appauthtutorialpaper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -61,14 +62,9 @@ public class MainActivity extends AppCompatActivity {
         // Inițializăm butoane
         signin = findViewById(R.id.SignInBtn);
         register = findViewById(R.id.RegisterBtn);
-        googleSignInBtn = findViewById(R.id.btnGoogleSignIn);
-
+        LinearLayout googleSignInBtn = findViewById(R.id.btnGoogleSignIn);
         // Click pe Sign-In standard
-        signin.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, SigninActivity.class));
-            finish();
-        });
-
+        googleSignInBtn.setOnClickListener(v -> signInWithGoogle());
         // Click pe Register
         register.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
