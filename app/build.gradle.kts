@@ -51,19 +51,23 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-   // //Aducem dependențe pentru a conecta proiectul la Firebase
-   // // Import the Firebase BoM
+    //Aducem dependențe pentru a conecta proiectul la Firebase
+    // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
-   //  TODO: Add the dependencies for Firebase products you want to use
-   // // When using the BoM, don't specify versions in Firebase dependencies
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
-   // // Add the dependencies for any other desired Firebase products
-   // // https://firebase.google.com/docs/android/setup#available-libraries
-//
-   // // // The dependencies for Firebase Authentication and Cloud Firestore
+   // Add the dependencies for any other desired Firebase products
+   // https://firebase.google.com/docs/android/setup#available-libraries
+   // The dependencies for Firebase Authentication and Cloud Firestore
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.gms:play-services-auth:21.1.0")
+
+    // Glide (user photo)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0") // Java
+
 
 }
 

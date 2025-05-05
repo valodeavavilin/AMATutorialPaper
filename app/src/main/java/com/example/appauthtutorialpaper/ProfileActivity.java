@@ -13,6 +13,7 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -61,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         userRef = FirebaseDatabase.getInstance("https://amatutorialpaper-default-rtdb.europe-west1.firebasedatabase.app")
                 .getReference("Users").child(uid);
 
-        // 🔄 Citim datele
+        // Citim datele
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,20 +74,36 @@ public class ProfileActivity extends AppCompatActivity {
                     emailText.setText(user.email);
                     phoneText.setText(user.phone);
                     passwordText.setText(user.password);
+
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     if (firebaseUser != null && firebaseUser.getProviderData().size() > 1) {
                         for (UserInfo profile : firebaseUser.getProviderData()) {
                             if ("google.com".equals(profile.getProviderId())) {
                                 passwordText.setVisibility(View.GONE);
+
+                                // Glide în loc de Picasso + Google profile photo
+                                Uri photoUrl = firebaseUser.getPhotoUrl();
+                                if (photoUrl != null) {
+                                    Glide.with(ProfileActivity.this)
+                                            .load(photoUrl)
+                                            .placeholder(R.drawable.ic_launcher_foreground) // fallback dacă nu are poză
+                                            .into(profileImage);
+                                }
+
                                 break;
                             }
                         }
-                    }
-                    // ✅ Afișăm poza dacă există un URL
-                    if (user.profileImageUrl != null) {
-                        Picasso.get().load(user.profileImageUrl).into(profileImage);
+                    } else {
+                        // Dacă nu e cont Google, folosește URL-ul salvat în Realtime Database
+                        if (user.profileImageUrl != null) {
+                            Glide.with(ProfileActivity.this)
+                                    .load(user.profileImageUrl)
+                                    .placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(profileImage);
+                        }
                     }
                 }
+
             }
 
             @Override
@@ -94,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        // 💾 Salvăm modificările
+        // Salvăm modificările
         saveBtn.setOnClickListener(v -> {
             String newFirst = fnameText.getText().toString();
             String newLast = lnameText.getText().toString();
@@ -112,17 +130,21 @@ public class ProfileActivity extends AppCompatActivity {
             intent.setType("image/*");
             startActivityForResult(intent, 1001);
         });
-        
-        
-
-
-        
 
         // 🔓 Logout
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             finish();
+        });
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Revino la MainActivity în loc să închizi aplicația
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
@@ -153,5 +175,12 @@ public class ProfileActivity extends AppCompatActivity {
         }).addOnFailureListener(e -> {
             Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show();
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
