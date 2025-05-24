@@ -43,6 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
     private CircleImageView profileImage;
     private Uri imageUri;
     private StorageReference storageRef;
+    private Button createEventBtn;
+    private Button viewEventsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,16 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+        createEventBtn = findViewById(R.id.createEventBtn);
+        createEventBtn.setOnClickListener(v -> {
+            startActivity(new Intent(ProfileActivity.this, CreateEventActivity.class));
+        });
+
+        viewEventsBtn = findViewById(R.id.viewEventsBtn);
+        viewEventsBtn.setOnClickListener(v -> {
+            startActivity(new Intent(ProfileActivity.this, EventListActivity.class));
+        });
+
     }
 
 
@@ -159,6 +171,8 @@ public class ProfileActivity extends AppCompatActivity {
             uploadImageToFirebase();
         }
     }
+
+
     private void uploadImageToFirebase() {
         if (imageUri == null) return;
 
@@ -182,4 +196,6 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
 }
