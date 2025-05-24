@@ -45,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference storageRef;
     private Button createEventBtn;
     private Button viewEventsBtn;
+    private Button myEventsBtn;
+    private Button participationsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +157,17 @@ public class ProfileActivity extends AppCompatActivity {
         viewEventsBtn = findViewById(R.id.viewEventsBtn);
         viewEventsBtn.setOnClickListener(v -> {
             startActivity(new Intent(ProfileActivity.this, EventListActivity.class));
+        });
+        myEventsBtn = findViewById(R.id.myEventsBtn);
+        myEventsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, MyCreatedEventsActivity.class);
+            startActivity(intent);
+        });
+
+        participationsBtn = findViewById(R.id.participationsBtn);
+        participationsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, MyParticipationsActivity.class);
+            startActivity(intent);
         });
 
     }

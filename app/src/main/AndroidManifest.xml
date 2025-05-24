@@ -19,6 +19,9 @@
             android:name=".EventListActivity" />
         <activity
             android:name=".EventDetailsActivity" />
+        <activity android:name=".MyCreatedEventsActivity" />
+        <activity android:name=".MyParticipationsActivity" />
+
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />

@@ -59,6 +59,11 @@ public class CreateEventActivity extends AppCompatActivity {
     }
 
     private void createEvent() {
+        String displayName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        String creatorName = (displayName != null && !displayName.isEmpty())
+                ? displayName
+                : FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
         Map<String, Object> event = new HashMap<>();
         event.put("title", titleEditText.getText().toString().trim());
         event.put("description", descriptionEditText.getText().toString().trim());
@@ -67,7 +72,7 @@ public class CreateEventActivity extends AppCompatActivity {
         event.put("location", locationEditText.getText().toString().trim());
         event.put("imageUrl", imageUrlEditText.getText().toString().trim());
         event.put("creatorId", uid);
-        event.put("creatorName", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        event.put("creatorName", creatorName);
         event.put("status", "activ");
         event.put("participants", new ArrayList<>());
 
