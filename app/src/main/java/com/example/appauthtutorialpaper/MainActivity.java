@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                                 // Redirectionam către profil
-                                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                startActivity(new Intent(MainActivity.this, EventListActivity.class));
                                 finish();
                             }
 

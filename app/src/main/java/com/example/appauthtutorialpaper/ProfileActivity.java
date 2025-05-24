@@ -35,7 +35,7 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseDrawerActivity {
 
     private Button logout, saveBtn;
     private EditText fnameText, lnameText, emailText, phoneText, passwordText;
@@ -149,26 +149,7 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
-        createEventBtn = findViewById(R.id.createEventBtn);
-        createEventBtn.setOnClickListener(v -> {
-            startActivity(new Intent(ProfileActivity.this, CreateEventActivity.class));
-        });
 
-        viewEventsBtn = findViewById(R.id.viewEventsBtn);
-        viewEventsBtn.setOnClickListener(v -> {
-            startActivity(new Intent(ProfileActivity.this, EventListActivity.class));
-        });
-        myEventsBtn = findViewById(R.id.myEventsBtn);
-        myEventsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, MyCreatedEventsActivity.class);
-            startActivity(intent);
-        });
-
-        participationsBtn = findViewById(R.id.participationsBtn);
-        participationsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, MyParticipationsActivity.class);
-            startActivity(intent);
-        });
 
     }
 

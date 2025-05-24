@@ -67,37 +67,7 @@
             android:layout_height="wrap_content"
             android:text="Logout"
             android:layout_marginTop="10dp" />
-        <Button
-            android:id="@+id/createEventBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Event"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white" />
-        <Button
-            android:id="@+id/viewEventsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vezi Evenimente"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white" />
-        <Button
-            android:id="@+id/myEventsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Evenimentele Mele"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white"/>
-        <Button
-            android:id="@+id/participationsBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Participări"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/purple_500"
-            android:textColor="@android:color/white"/>
+
+
     </LinearLayout>
 </ScrollView>

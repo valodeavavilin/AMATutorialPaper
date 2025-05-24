@@ -1,5 +1,7 @@
 package com.example.appauthtutorialpaper;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +14,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
-public class CreateEventActivity extends AppCompatActivity {
+public class CreateEventActivity extends BaseDrawerActivity {
 
     private EditText titleEditText, descriptionEditText, dateEditText, timeEditText, locationEditText, imageUrlEditText;
     private Button saveEventBtn;
@@ -31,6 +35,7 @@ public class CreateEventActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+
         // Legare UI
         titleEditText = findViewById(R.id.titleEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
@@ -40,6 +45,8 @@ public class CreateEventActivity extends AppCompatActivity {
         imageUrlEditText = findViewById(R.id.imageUrlEditText);
         saveEventBtn = findViewById(R.id.saveEventBtn);
 
+        dateEditText.setOnClickListener(v -> showDatePickerDialog());
+        timeEditText.setOnClickListener(v -> showTimePickerDialog());
         // Verificăm dacă venim pentru editare
         eventId = getIntent().getStringExtra("eventId");
         isEditMode = eventId != null;
@@ -56,6 +63,37 @@ public class CreateEventActivity extends AppCompatActivity {
                 createEvent();
             }
         });
+    }
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    // format: yyyy-MM-dd
+                    String formattedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
+                    dateEditText.setText(formattedDate);
+                },
+                year, month, day);
+
+        datePickerDialog.show();
+    }
+    private void showTimePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                (view, selectedHour, selectedMinute) -> {
+                    // Format 24h: HH:mm
+                    String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute);
+                    timeEditText.setText(formattedTime);
+                },
+                hour, minute, true); // true = 24h format
+
+        timePickerDialog.show();
     }
 
     private void createEvent() {

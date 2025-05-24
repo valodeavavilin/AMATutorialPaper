@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-public class MyParticipationsActivity extends AppCompatActivity{
+public class MyParticipationsActivity extends BaseDrawerActivity{
     private RecyclerView recyclerView;
     private EventAdapter adapter;
     private List<Event> participatingEvents = new ArrayList<>();

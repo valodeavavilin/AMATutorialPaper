@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventDetailsActivity extends AppCompatActivity {
+public class EventDetailsActivity extends BaseDrawerActivity {
 
     private ImageView eventImage;
     private TextView eventTitle, eventDateTime, eventLocation, eventDescription;
@@ -81,6 +81,12 @@ public class EventDetailsActivity extends AppCompatActivity {
                 addParticipant();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadEventDetails();
     }
 
     private void loadEventDetails() {

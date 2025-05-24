@@ -26,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SigninActivity extends AppCompatActivity {
+public class SigninActivity extends BaseDrawerActivity {
 
     private EditText email;
     private EditText password;
@@ -84,7 +84,7 @@ public class SigninActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(Email, Password)
                 .addOnSuccessListener(authResult -> {
                     Toast.makeText(SigninActivity.this, "Sign-in successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SigninActivity.this, ProfileActivity.class));
+                    startActivity(new Intent(SigninActivity.this, EventListActivity.class));
                     finish();
                 })
                 .addOnFailureListener(e -> {

@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseDrawerActivity {
 
 
     private EditText email;
