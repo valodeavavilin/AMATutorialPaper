@@ -3,6 +3,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 public class MyCreatedEventsActivity extends BaseDrawerActivity{
     private RecyclerView recyclerView;
@@ -33,7 +36,8 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_created_events);
-
+        ImageButton btnSort = findViewById(R.id.btnSort);
+        btnSort.setOnClickListener(this::showSortMenu);
         recyclerView = findViewById(R.id.recyclerViewMyEvents);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new EventAdapter(this, myEvents);
@@ -49,6 +53,47 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
         loadMyEvents();
 
 
+    }
+
+    private void showSortMenu(View anchor) {
+        PopupMenu popup = new PopupMenu(this, anchor);
+        popup.getMenu().add("Dată (crescător)");
+        popup.getMenu().add("Dată (descrescător)");
+        popup.getMenu().add("Titlu A-Z");
+        popup.getMenu().add("Titlu Z-A");
+        popup.getMenu().add("Participanți (crescător)");
+        popup.getMenu().add("Participanți (descrescător)");
+
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getTitle().toString()) {
+                case "Dată (crescător)":
+                    myEvents.sort(Comparator.comparing(e -> e.date));
+                    break;
+                case "Dată (descrescător)":
+                    myEvents.sort((e1, e2) -> e2.date.compareTo(e1.date));
+                    break;
+                case "Titlu A-Z":
+                    myEvents.sort(Comparator.comparing(e -> e.title.toLowerCase()));
+                    break;
+                case "Titlu Z-A":
+                    myEvents.sort((e1, e2) -> e2.title.toLowerCase().compareTo(e1.title.toLowerCase()));
+                    break;
+                case "Participanți (crescător)":
+                    myEvents.sort(Comparator.comparingInt(e -> e.participants != null ? e.participants.size() : 0));
+                    break;
+                case "Participanți (descrescător)":
+                    myEvents.sort((e1, e2) -> {
+                        int s1 = e1.participants != null ? e1.participants.size() : 0;
+                        int s2 = e2.participants != null ? e2.participants.size() : 0;
+                        return Integer.compare(s2, s1);
+                    });
+                    break;
+            }
+            adapter.notifyDataSetChanged();
+            return true;
+        });
+
+        popup.show();
     }
 
 

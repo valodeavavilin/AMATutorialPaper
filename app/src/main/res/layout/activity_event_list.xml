@@ -15,6 +15,17 @@
         android:fontFamily="sans-serif-medium"
         android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true" />
+    <ImageButton
+        android:id="@+id/btnSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        android:contentDescription="Sortează"
+        android:tint="#3F51B5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventRecyclerView"

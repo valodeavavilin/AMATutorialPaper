@@ -3,4 +3,11 @@
     <string name="default_web_client_id">9526504992-aobfnk1hiqp87hudl1lpeu9vbhhjjr6v.apps.googleusercontent.com</string>
     <string name="navigation_drawer_open">Deschide meniul</string>
     <string name="navigation_drawer_close">Închide meniul</string>
+    <string-array name="sort_options">
+        <item>Implicit</item>
+        <item>Data (crescător)</item>
+        <item>Data (descrescător)</item>
+        <item>Participanți (descrescător)</item>
+        <item>Titlu (A-Z)</item>
+    </string-array>
 </resources>

@@ -4,17 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/pageTitle"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Evenimentele mele"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#3F51B5"
-        android:fontFamily="sans-serif-medium"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center"/>
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evenimentele mele"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#3F51B5"
+            android:fontFamily="sans-serif-medium"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="Sortare"
+            android:tint="#3F51B5" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/emptyMessage"
         android:layout_width="match_parent"
@@ -37,7 +54,7 @@
         android:id="@+id/createEventBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Event"
+        android:text="Creează Eveniment"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/purple_500"
         android:textColor="@android:color/white" />
