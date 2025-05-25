@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:fitsSystemWindows="true">
+    android:background="#FFF6FB"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,8 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:src="@drawable/ic_launcher_foreground"
             android:contentDescription="Imagine de profil"
             android:clickable="true"
@@ -25,26 +27,39 @@
             android:id="@+id/fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nume" />
+            android:hint="Nume"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prenume" />
+            android:hint="Prenume"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail"
-            android:enabled="false" />
+            android:enabled="false"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#999999" />
 
         <EditText
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Număr de telefon" />
+            android:hint="Număr de telefon"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/password"
@@ -52,22 +67,29 @@
             android:layout_height="wrap_content"
             android:hint="Parola"
             android:enabled="false"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
+            android:textColorHint="#999999"/>
 
         <Button
             android:id="@+id/savebtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="Salvează modificări"
-            android:layout_marginTop="20dp" />
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button" />
 
         <Button
             android:id="@+id/logoutbtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="Delogare"
-            android:layout_marginTop="10dp" />
-
-
+            android:backgroundTint="@color/purple_500"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button" />
     </LinearLayout>
 </ScrollView>
