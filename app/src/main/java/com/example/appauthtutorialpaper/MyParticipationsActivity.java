@@ -18,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.google.firebase.firestore.ListenerRegistration;
+
 public class MyParticipationsActivity extends BaseDrawerActivity{
     private RecyclerView recyclerView;
     private EventAdapter adapter;
@@ -27,6 +29,7 @@ public class MyParticipationsActivity extends BaseDrawerActivity{
 
     private TextView emptyMessage;
     private Button seeAllEventsBtn;
+    private ListenerRegistration listenerRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +56,29 @@ public class MyParticipationsActivity extends BaseDrawerActivity{
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         loadParticipatingEvents();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (listenerRegistration != null) {
+            listenerRegistration.remove();
+            listenerRegistration = null;
+        }
+    }
+
+
     private void loadParticipatingEvents() {
-        firestore.collection("events")
-                .get()
-                .addOnSuccessListener(querySnapshot -> {
+        listenerRegistration = firestore.collection("events")
+                .addSnapshotListener((querySnapshot, e) -> {
+                    if (e != null) {
+                        e.printStackTrace();
+                        return;
+                    }
+
                     participatingEvents.clear();
                     for (DocumentSnapshot doc : querySnapshot) {
                         List<Map<String, Object>> participants = (List<Map<String, Object>>) doc.get("participants");
@@ -91,4 +108,5 @@ public class MyParticipationsActivity extends BaseDrawerActivity{
                     }
                 });
     }
+
 }

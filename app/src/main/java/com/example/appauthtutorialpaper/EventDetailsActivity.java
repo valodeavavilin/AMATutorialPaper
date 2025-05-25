@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +37,7 @@ public class EventDetailsActivity extends BaseDrawerActivity {
     private FirebaseUser currentUser;
     private DocumentReference eventRef;
     private Event currentEvent;
+    private ListenerRegistration listenerRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,20 +88,29 @@ public class EventDetailsActivity extends BaseDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadEventDetails();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (listenerRegistration != null) {
+            listenerRegistration.remove();
+            listenerRegistration = null;
+        }
     }
 
     private void loadEventDetails() {
-        eventRef.get().addOnSuccessListener(doc -> {
-            if (doc.exists()) {
-                currentEvent = doc.toObject(Event.class);
-                if (currentEvent != null) {
-                    currentEvent.id = doc.getId();
-                    updateUI();
-                }
+        listenerRegistration = eventRef.addSnapshotListener((doc, error) -> {
+            if (error != null || doc == null || !doc.exists()) return;
+
+            currentEvent = doc.toObject(Event.class);
+            if (currentEvent != null) {
+                currentEvent.id = doc.getId();
+                updateUI();
             }
         });
     }
+
 
     private void updateUI() {
         eventTitle.setText(currentEvent.title + "\n(Creat de: " + currentEvent.creatorName + ")");

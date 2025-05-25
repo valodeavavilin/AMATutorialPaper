@@ -12,6 +12,7 @@ import com.example.appauthtutorialpaper.models.Event;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ public class EventListActivity extends BaseDrawerActivity {
     private EventAdapter adapter;
     private List<Event> eventList;
     private FirebaseFirestore firestore;
+    private ListenerRegistration listenerRegistration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,24 +47,34 @@ public class EventListActivity extends BaseDrawerActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         loadEvents();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (listenerRegistration != null) {
+            listenerRegistration.remove();
+            listenerRegistration = null;
+        }
     }
 
     private void loadEvents() {
-        firestore.collection("events")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
+        listenerRegistration = firestore.collection("events")
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null || snapshots == null) return;
+
                     eventList.clear();
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                    for (DocumentSnapshot doc : snapshots.getDocuments()) {
                         Event event = doc.toObject(Event.class);
                         if (event != null) {
-                            event.id = doc.getId(); // salvăm id pentru detalii
+                            event.id = doc.getId();
                             eventList.add(event);
                         }
                     }
                     adapter.notifyDataSetChanged();
                 });
     }
+
 }

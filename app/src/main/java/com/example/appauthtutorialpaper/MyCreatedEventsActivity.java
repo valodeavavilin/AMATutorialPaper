@@ -14,6 +14,7 @@ import com.example.appauthtutorialpaper.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
     private String currentUid;
     private Button createEventBtn;
     private TextView emptyMessage;
+    private ListenerRegistration listenerRegistration;
 
 
     @Override
@@ -49,17 +51,28 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
 
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         loadMyEvents();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (listenerRegistration != null) {
+            listenerRegistration.remove();
+            listenerRegistration = null;
+        }
+    }
+
     private void loadMyEvents() {
-        firestore.collection("events")
+        listenerRegistration = firestore.collection("events")
                 .whereEqualTo("creatorId", currentUid)
-                .get()
-                .addOnSuccessListener(querySnapshot -> {
+                .addSnapshotListener((querySnapshot, error) -> {
+                    if (error != null || querySnapshot == null) return;
+
                     myEvents.clear();
                     for (DocumentSnapshot doc : querySnapshot) {
                         Event event = doc.toObject(Event.class);
@@ -69,6 +82,7 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
                         }
                     }
                     adapter.notifyDataSetChanged();
+
                     if (myEvents.isEmpty()) {
                         emptyMessage.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
@@ -76,11 +90,7 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
                         emptyMessage.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                     }
-                })
-                .addOnFailureListener(e ->
-                        e.printStackTrace()
-                );
-
+                });
     }
 
 
