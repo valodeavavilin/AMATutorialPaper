@@ -17,7 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:src="@drawable/ic_launcher_foreground"
-            android:contentDescription="Profile Image"
+            android:contentDescription="Imagine de profil"
             android:clickable="true"
             android:focusable="true" />
 
@@ -25,32 +25,32 @@
             android:id="@+id/fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name" />
+            android:hint="Nume" />
 
         <EditText
             android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name" />
+            android:hint="Prenume" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="E-mail"
             android:enabled="false" />
 
         <EditText
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone" />
+            android:hint="Număr de telefon" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Parola"
             android:enabled="false"
             android:inputType="textPassword" />
 
@@ -58,14 +58,14 @@
             android:id="@+id/savebtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Changes"
+            android:text="Salvează modificări"
             android:layout_marginTop="20dp" />
 
         <Button
             android:id="@+id/logoutbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:text="Delogare"
             android:layout_marginTop="10dp" />
 
 

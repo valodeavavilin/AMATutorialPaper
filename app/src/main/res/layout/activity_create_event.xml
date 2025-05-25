@@ -15,7 +15,7 @@
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Event Title"
+            android:hint="Titlul evenimentului"
             android:textSize="16sp"
             android:layout_marginBottom="10dp" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Descriere"
             android:textSize="16sp"
             android:layout_marginBottom="10dp" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/dateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
+            android:hint="Dată"
             android:focusable="false"
             android:clickable="true"
             android:inputType="none"
@@ -43,7 +43,7 @@
             android:id="@+id/timeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Time"
+            android:hint="Oră"
             android:focusable="false"
             android:clickable="true"
             android:inputType="none"
@@ -54,7 +54,7 @@
             android:id="@+id/locationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location"
+            android:hint="Locația"
             android:textSize="16sp"
             android:layout_marginBottom="10dp" />
 
@@ -70,7 +70,7 @@
             android:id="@+id/saveEventBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Event"
+            android:text="Creează eveniment"
             android:backgroundTint="@color/purple_500"
             android:textColor="@android:color/white" />
 

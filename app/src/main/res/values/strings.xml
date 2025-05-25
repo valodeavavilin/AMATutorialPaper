@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppAuthTutorialPaper</string>
+    <string name="app_name">Eventify</string>
     <string name="default_web_client_id">9526504992-aobfnk1hiqp87hudl1lpeu9vbhhjjr6v.apps.googleusercontent.com</string>
     <string name="navigation_drawer_open">Deschide meniul</string>
     <string name="navigation_drawer_close">Închide meniul</string>

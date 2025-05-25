@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,26 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
+    <!-- Logo mărit -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="150dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="App Logo"
+        android:src="@mipmap/authicon" />
+
+    <!-- Nume aplicație -->
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eventify"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#3F51B5"
+        android:layout_marginBottom="16dp" />
+
+
+
+    <!-- Spacer -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="0" />
+
+    <!-- Text Bine ai venit -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!" />
+        android:text="Bine ai venit!"
+        android:textSize="18sp"
+        android:textColor="#555555"
+        android:layout_marginBottom="10dp" />
 
+    <!-- Butoane jos pe ecran -->
     <Button
         android:id="@+id/SignInBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign-In" />
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Autentificare"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button" />
 
     <Button
         android:id="@+id/RegisterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Înregistrare"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button" />
 
+    <!-- Google Sign-In -->
     <LinearLayout
         android:id="@+id/btnGoogleSignIn"
         android:layout_width="wrap_content"
@@ -48,13 +93,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Continue with Google"
+            android:text="Continuă cu Google"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:textSize="16sp" />
     </LinearLayout>
-
-
-
 
 </LinearLayout>

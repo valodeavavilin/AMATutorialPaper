@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:hint="Email" />
+        android:hint="E-mail" />
 
     <EditText
         android:id="@+id/password"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="20dp"
-        android:hint="Password" />
+        android:hint="Parola" />
 
     <Button
         android:id="@+id/signin"
@@ -31,14 +31,14 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="4dp"
         android:textSize="20dp"
-        android:text="Sign-in" />
+        android:text="Autentificare" />
 
     <Button
         style="?android:attr/borderlessButtonStyle"
         android:id="@+id/forgotPasswordBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot your password?"
+        android:text="Recuperare parolă"
         android:textColor="@color/purple_500"
         android:textStyle="bold"
         android:minHeight="48dp"
