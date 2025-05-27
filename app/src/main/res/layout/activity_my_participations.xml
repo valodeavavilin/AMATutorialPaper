@@ -56,6 +56,5 @@
         android:layout_height="wrap_content"
         android:text="Vezi toate evenimentele"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/purple_500"
         android:textColor="@android:color/white" />
 </LinearLayout>
