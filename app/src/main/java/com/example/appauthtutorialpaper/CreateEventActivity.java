@@ -47,7 +47,7 @@ public class CreateEventActivity extends BaseDrawerActivity {
 
         dateEditText.setOnClickListener(v -> showDatePickerDialog());
         timeEditText.setOnClickListener(v -> showTimePickerDialog());
-        // Verificăm dacă venim pentru editare
+
         eventId = getIntent().getStringExtra("eventId");
         isEditMode = eventId != null;
 

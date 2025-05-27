@@ -135,7 +135,6 @@ public class ProfileActivity extends BaseDrawerActivity {
             startActivityForResult(intent, 1001);
         });
 
-        // 🔓 Logout
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
@@ -186,7 +185,7 @@ public class ProfileActivity extends BaseDrawerActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        Intent intent = new Intent(ProfileActivity.this, EventListActivity.class);
         startActivity(intent);
         finish();
     }

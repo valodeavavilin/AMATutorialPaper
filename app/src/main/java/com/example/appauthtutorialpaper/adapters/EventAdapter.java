@@ -31,11 +31,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @NonNull
     @Override
+    //Este apelată când RecyclerView are nevoie de un nou rând (view holder)
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.event_item, parent, false);
         return new EventViewHolder(view);
     }
-
+//Este apelată pentru a popula un rând din listă cu datele unui Event
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
@@ -60,7 +61,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             context.startActivity(intent);
         });
     }
-
+    //Returnează câte elemente sunt în listă (câte evenimente trebuie afișate).
     @Override
     public int getItemCount() {
         return eventList.size();
@@ -70,6 +71,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         ImageView image;
         TextView title, creator, location, dateTime, participants, status;
 
+//Clasa ce conține legăturile la componentele din layout event_item.xml
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.eventImage);

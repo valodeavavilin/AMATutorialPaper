@@ -51,10 +51,7 @@ public class MyCreatedEventsActivity extends BaseDrawerActivity{
             startActivity(intent);
         });
         loadMyEvents();
-
-
     }
-
     private void showSortMenu(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);
         popup.getMenu().add("Dată (crescător)");

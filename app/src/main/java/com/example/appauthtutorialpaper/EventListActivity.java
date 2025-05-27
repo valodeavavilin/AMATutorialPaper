@@ -104,29 +104,7 @@ public class EventListActivity extends BaseDrawerActivity {
         popup.show();
     }
 
-    private void applySort(int position) {
-        switch (position) {
-            case 1: // Data crescător
-                Collections.sort(eventList, Comparator.comparing(e -> e.date));
-                break;
-            case 2: // Data descrescător
-                Collections.sort(eventList, (e1, e2) -> e2.date.compareTo(e1.date));
-                break;
-            case 3: // Participanți descrescător
-                Collections.sort(eventList, (e1, e2) -> {
-                    int size1 = e1.participants != null ? e1.participants.size() : 0;
-                    int size2 = e2.participants != null ? e2.participants.size() : 0;
-                    return Integer.compare(size2, size1);
-                });
-                break;
-            case 4: // Titlu A-Z
-                Collections.sort(eventList, Comparator.comparing(e -> e.title.toLowerCase()));
-                break;
-            default:
-                break;
-        }
-        adapter.notifyDataSetChanged();
-    }
+
 
     @Override
     protected void onStart() {

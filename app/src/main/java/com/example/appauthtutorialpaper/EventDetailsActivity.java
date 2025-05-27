@@ -136,7 +136,7 @@ public class EventDetailsActivity extends BaseDrawerActivity {
 
         LinearLayout container = (LinearLayout) ((ScrollView) findViewById(R.id.main)).getChildAt(0);
 
-        // 🔁 Ștergem vechiul buton de „anulează/activează” dacă există
+        // Ștergem vechiul buton de „anulează/activează” dacă există
         for (int i = 0; i < container.getChildCount(); i++) {
             View child = container.getChildAt(i);
             if (child.getTag() != null && child.getTag().equals("cancelButton")) {
@@ -146,7 +146,7 @@ public class EventDetailsActivity extends BaseDrawerActivity {
         }
 
         if (isCreator) {
-            // 👉 Buton modifică
+            // Buton modifică
             participateBtn.setText("Modifică Eveniment");
             participateBtn.setVisibility(View.VISIBLE);
             participateBtn.setOnClickListener(v -> {
@@ -155,7 +155,7 @@ public class EventDetailsActivity extends BaseDrawerActivity {
                 startActivity(intent);
             });
 
-            // 👉 Buton „Anulează” sau „Activează”
+            // Buton „Anulează” sau „Activează”
             Button statusBtn = new Button(this);
             statusBtn.setTag("cancelButton");
 
@@ -186,9 +186,9 @@ public class EventDetailsActivity extends BaseDrawerActivity {
             container.addView(statusBtn);
 
         } else {
-            // 👥 Utilizator obișnuit
+            // Utilizator obișnuit
             if (isAnulat) {
-                participateBtn.setVisibility(View.GONE); // 🔒 nu poate participa
+                participateBtn.setVisibility(View.GONE); // nu poate participa
                 Toast.makeText(this, "Acest eveniment este ANULAT", Toast.LENGTH_LONG).show();
             } else {
                 // participare / renunțare
@@ -211,11 +211,6 @@ public class EventDetailsActivity extends BaseDrawerActivity {
             }
         }
     }
-
-
-
-
-
 
     private void addParticipant() {
         Map<String, Object> newParticipant = new HashMap<>();
